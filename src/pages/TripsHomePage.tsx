@@ -3,6 +3,7 @@ import type { Trip } from "../types/trip";
 import { filterTrips } from "../lib/tripUtils";
 import { SearchBar } from "../components/SearchBar";
 import { TripTable, type SortKey } from "../components/TripTable";
+import { TripMap } from "../components/TripMap";
 
 type View = "list" | "map";
 
@@ -128,6 +129,10 @@ export default function TripsHomePage() {
           selectedId={selectedId}
           onSelect={setSelectedId}
         />
+      )}
+
+      {!loading && !loadErr && filtered.length > 0 && view === "map" && (
+        <TripMap trips={filtered} selectedId={selectedId} />
       )}
     </div>
   );
